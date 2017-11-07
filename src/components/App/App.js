@@ -63,6 +63,8 @@ class App extends Component {
         let trackURIs = this.state.playlistTracks.map(element => element.uri);
         console.log("save playlist -----------------------");
         console.log(trackURIs);
+        Spotify.savePlaylist("titulo fijo", trackURIs);
+        
   }
 
 
