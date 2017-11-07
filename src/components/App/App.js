@@ -13,33 +13,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-        searchResults:[{
-            name:"emergency in planet earth",
-            artist:"jamiroquai",
-            album: "Once B",
-            id: "1",
-            uri: "spotify:track:1"
-        },{
-            name:"recordar es vivir",
-            artist:"pedro",
-            album: "III",
-            id: "2",
-            uri: "spotify:track:2"
-        }],
+        searchResults:[],
         playlistname: "ejemplo playlist",
-        playlistTracks: [{
-            name:"TRACKS emer earth",
-            artist:"TRACKSroquai",
-            album: "TRACKSe B",
-            id: "3",
-            uri: "spotify:track:3"
-        },{
-            name:"TRACKSar es vivir",
-            artist:"TRACKS pedro",
-            album: "TRACKS III",
-            id: "4",
-            uri: "spotify:track:4"
-        }] 
+        playlistTracks: [] 
     }
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
