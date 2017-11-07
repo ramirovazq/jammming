@@ -4,6 +4,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 
 
 
@@ -43,6 +44,8 @@ class App extends Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.searchSpotify = this.searchSpotify.bind(this);
 
   }//constructor
 
@@ -80,16 +83,31 @@ class App extends Component {
         this.setState({playlistTracks: copiaplaylistTracks});
   }
 
+  savePlaylist(){
+        let trackURIs = this.state.playlistTracks.map(element => element.uri);
+        console.log("save playlist -----------------------");
+        console.log(trackURIs);
+  }
+
+
+ searchSpotify(term){
+    console.log("term: --"+term);
+    Spotify.search(term).then(resultados => this.setState({
+        searchResults: resultados    
+    }));
+    //console.log(resultadosBusqueda);
+  }
+
 
   render() {
     return (
         <div>
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
           <div className="App">
-                <SearchBar />
+                <SearchBar onSearch={this.searchSpotify} />
             <div className="App-playlist">
                 <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} isRemoval={false} />
-                <Playlist playlistName={this.state.playlistname} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} isRemoval={true} onNameChange={this.updatePlaylistName}  />
+                <Playlist playlistName={this.state.playlistname} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} isRemoval={true} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
             </div>
           </div>
         </div>
