@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
         searchResults:[],
-        playlistname: "ejemplo playlist",
+        playlistname: "New Playlist",
         playlistTracks: [] 
     }
     this.addTrack = this.addTrack.bind(this);
@@ -61,9 +61,8 @@ class App extends Component {
 
   savePlaylist(){
         let trackURIs = this.state.playlistTracks.map(element => element.uri);
-        console.log("save playlist -----------------------");
-        console.log(trackURIs);
-        Spotify.savePlaylist("titulo fijo", trackURIs);
+        Spotify.savePlaylist(this.state.playlistname, trackURIs);
+        this.setState({playlistName: "New Playlist", searchResults:[]});
         
   }
 
