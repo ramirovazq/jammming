@@ -1,5 +1,5 @@
-const clientId = '';
-const redirectURI = 'http://ramiroplaylist.surge.sh';
+const clientId = '15a3516edcf340f79e9c0f0dec942ce7';
+const redirectURI = 'http://ramiroquai.surge.sh';
 let accessToken = null;
 
 
