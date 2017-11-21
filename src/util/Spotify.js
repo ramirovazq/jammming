@@ -1,5 +1,6 @@
 const clientId = '15a3516edcf340f79e9c0f0dec942ce7';
-const redirectURI = 'http://ramiroquai.surge.sh';
+//const redirectURI = 'http://ramiroquai.surge.sh';
+const redirectURI = 'http://localhost:3000/';
 let accessToken = null;
 
 

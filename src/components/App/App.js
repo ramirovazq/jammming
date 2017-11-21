@@ -30,6 +30,7 @@ class App extends Component {
             this.setState({playlistname: name});
   }
 
+/*
   addTrack(track){
 
         function encuentraid(element){
@@ -45,7 +46,17 @@ class App extends Component {
 
 
   }
+*/
 
+    addTrack(track) {
+        let tracks = this.state.playlistTracks;
+        if (!tracks.includes(track)) {
+            tracks.push(track);
+            this.setState({playlistTracks: tracks});
+        }//if
+    }
+
+/*
   removeTrack(track){
 
         function encuentraid(element){
@@ -58,6 +69,13 @@ class App extends Component {
         copiaplaylistTracks.splice(indiceElemento,1);
         this.setState({playlistTracks: copiaplaylistTracks});
   }
+*/
+
+    removeTrack(track) {
+        let tracks = this.state.playlistTracks;
+        tracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
+        this.setState({playlistTracks: tracks});
+    }
 
   savePlaylist(){
         let trackURIs = this.state.playlistTracks.map(element => element.uri);
