@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
+import Reproducer from '../Reproducer/Reproducer';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
@@ -15,13 +16,15 @@ class App extends Component {
     this.state = {
         searchResults:[],
         playlistname: "New Playlist",
-        playlistTracks: [] 
+        playlistTracks: [],
+        mp3Preview: ""
     }
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.searchSpotify = this.searchSpotify.bind(this);
+    this.updatePreviewMp3 = this.updatePreviewMp3.bind(this);
 
   }//constructor
 
@@ -93,6 +96,10 @@ class App extends Component {
     //console.log(resultadosBusqueda);
   }
 
+  updatePreviewMp3(urlmp3){
+     console.log("mp3 nuevo preview: --"+urlmp3);
+     this.setState({mp3Preview: urlmp3});
+}
 
   render() {
     return (
@@ -100,8 +107,9 @@ class App extends Component {
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
           <div className="App">
                 <SearchBar onSearch={this.searchSpotify} />
+                <Reproducer defaultTrack={this.state.mp3Preview} />
             <div className="App-playlist">
-                <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} isRemoval={false} />
+                <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} isRemoval={false} OnPreviewChange={this.updatePreviewMp3} />
                 <Playlist playlistName={this.state.playlistname} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} isRemoval={true} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
             </div>
           </div>
